@@ -1,0 +1,24 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2312
+
+This plugin provides a function that will highlight (or remove
+highlighting ) of the current scope and parent scope based on difference in
+indentation. It can be very usefull for languages that use indentation to
+define the scope ( python, rubby, etc. )
+
+I wrote this script so that I could quickly restore visual stack when
+coding in python. So for python I created the following mapping in my vimrc:
+
+map <silent> <Leader>ih :call IHighlight( 1, "\^[[:space:]]*\\(def\\\\|class\\)[[:space:]]\\+" )<CR> 
+map <silent> <Leader>is :call IHighlight( 0, "\^[[:space:]]*\\(def\\\\|class\\)[[:space:]]\\+" )<CR>
+
+which allows me by entering \ih (or \is) to highlihgt current scope along
+with the parent scope and than by entering \ih (or \is) again remove the
+highlighting
+
+the difference between \ih and \is is that
+the first one (\ih) will turn off all syntax highlighting untill indentation highlighting is active
+the syntax highlighting will be turned back on when you enter \ih again turning the indentation highlighting off
+the second one (\is) will apply indentation highlighting on top of existing syntax highlighting
+
+one can extend this functionality and provide bindings for movement keys so
+that highlighting follows the cursor position
